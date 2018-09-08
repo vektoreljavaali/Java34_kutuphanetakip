@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+<div class="row">
+
+	<div class="col-md-4">
+	    <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">yayınevi ekleme formu</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+              <div class="box-body">
+                <div class="form-group col-md-12">
+                  <label for="exampleInputEmail1">Yayınevi Adı</label>
+                 
+                  <h:inputText value="#{yayineviBean.ad}" type="email" 
+                  class="form-control" id="exampleInputEmail1" 
+                  placeholder="yayınevi adını giriniz.."/>
+                </div>
+             </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer" style="text-align:right;">
+               
+                <h:commandButton value="Kaydet" 
+                action="#{yayineviBean.kaydet}" 
+                class="btn btn-primary"/>
+                
+                
+              </div>
+           
+          </div>
+          <!-- /.box -->
+	</div>
+
+	<div class="col-md-8">
+	
+          <div class="box box-warning">
+            <div class="box-header">
+              <h3 class="box-title">Yayınevi Listesi Tablosu</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Yayınevi Adı</th>
+                  <th>İşlem</th>
+                 
+                </tr>
+                </thead>
+                <tbody>
+                <ui:repeat var="ls" value="#{yayineviBean.liste}">
+                 
+                  <tr>
+                  <td>#{ls.id}</td>
+                  <td>#{ls.ad}
+                  </td>
+                  <td>
+				   <button onclick="sil(#{ls.id})" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+               		 Sil
+              	   </button>
+				  </td>
+                  </tr>
+                  
+                </ui:repeat>
+                
+              
+               
+                </tbody>
+              
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          
+          <div class="modal modal-danger fade" id="modal-danger">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">DİKKAT!!  Seçilen Kayıdı Silmek İstiyor musunuz?</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+				<h:inputText id="txtyayinevisilid" value="#{yayineviBean.silinecekid}" style="color:black" class="hide"/>
+				</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">İptal</button>
+                <h:commandButton class="btn btn-outline" 
+                value="Kaydı Sil" action="#{yayineviBean.sil}"/>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+          
+	</div>
+
+      
+
+</div>
+
+<script>
+
+function sil(id){
+		
+	document.getElementById("frmIndex:txtyayinevisilid").value = id;
+}
+
+</script>
+
+
+
+
+</html>
