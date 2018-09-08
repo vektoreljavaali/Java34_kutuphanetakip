@@ -14,6 +14,8 @@ import com.vektorel.Models.tblOgrenci;
 @SessionScoped
 public class indexBean {
 
+	String adim="fsdf";
+	
 	private String maintitle= "AnaSayfa";
 	private String subtitle="Yönetim Paneli";
 	private String url="mainpage.xhtml";
